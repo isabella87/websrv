@@ -14,11 +14,11 @@
 
         Hibernate可以完全交由Spring来管理，是的hibernate.cfg.xml也省了。
 
-        applicationContext.xml里配置了数据库连接的基本信息（对hibernate的管理），还有对所有bean的自动装配管理和事物的管理。
+        applicationContext.xml里配置了数据库连接的基本信息（对hibernate的管理），还有对所有bean的自动装配管理和事务的管理。
 
         struts.xml里配置了一些struts的基本参数，并告诉容器用spring来管理自己。
 
-        web.xml中包含了Spring和struts的基本配置，自动扫描Action的配置就是通知tomcat，我要使用注解来配置struts
+        web.xml中包含了Spring和struts的基本配置，自动扫描Action的配置(通知tomcat，我要使用注解来配置struts)
 
     -->
 
