@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <description>框架平台</description>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!--注意：
+
+        使用注解的好处，配置文件可以精简到只需要web.xml,applicationContext.xml和struts.xml。
+
+        Hibernate可以完全交由Spring来管理，是的hibernate.cfg.xml也省了。
+
+        applicationContext.xml里配置了数据库连接的基本信息（对hibernate的管理），还有对所有bean的自动装配管理和事物的管理。
+
+        struts.xml里配置了一些struts的基本参数，并告诉容器用spring来管理自己。
+
+        web.xml中包含了Spring和struts的基本配置，自动扫描Action的配置就是通知tomcat，我要使用注解来配置struts
+
+    -->
+
+    <!-- 配置Spring的监听器，用于初始化ApplicationContext对象 -->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext*.xml</param-value>
+    </context-param>
+
+
+    <!-- Struts2 的配置-->
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+
+        <init-param>
+            <param-name>struts.custom.i18n.resources</param-name>
+            <param-value>mess</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>filterConfig</param-name>
+            <param-value>classpath:struts.xml</param-value>
+        </init-param>
+
+        <!-- 自动扫描action -->
+        <init-param>
+            <param-name>actionPackages</param-name>
+            <param-value>com.module</param-value>
+        </init-param>
+    </filter>
+
+
+    <!--让Struts 2 的核心Filter拦截所有请求-->
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+</web-app>
+
